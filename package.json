@@ -7,7 +7,7 @@
     "imgzip": "./bin/entry.mjs"
   },
   "scripts": {
-    "pub": "yarn publish",
+    "pub": "npm publish",
     "imgzip": "node ./bin/entry.mjs"
   },
   "publishConfig": {
