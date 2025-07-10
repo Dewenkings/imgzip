@@ -1,14 +1,14 @@
 {
-  "name": "my-npm-package",
+  "name": "devin-img-zip",
   "version": "1.0.0",
   "description": "A demo package to illustrate how to publish an npm package step by step.",
   "main": "index.js",
   "bin": {
-    "mycli": "./bin/mycli.mjs"
+    "imgzip": "./bin/entry.mjs"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-     "mycli": "node bin/mycli.mjs"
+    "pub": "yarn publish",
+    "imgzip": "node ./bin/entry.mjs"
   },
   "author": "devin ding",
   "license": "ISC",
@@ -18,7 +18,6 @@
     "lodash-es": "^4.17.21",
     "openai": "^4.77.0",
     "sharp": "^0.34.2",
-    "tiny-async-pool": "1",
-    "yaml": "^2.7.0"
+    "tiny-async-pool": "1"
   }
 }
