@@ -1,6 +1,6 @@
 {
   "name": "devin-img-zip",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A demo package to illustrate how to publish an npm package step by step.",
   "main": "index.js",
   "bin": {
