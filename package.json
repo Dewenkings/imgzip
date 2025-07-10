@@ -1,5 +1,5 @@
 {
-  "name": "@devin/imgzip",
+  "name": "devin-img-zip",
   "version": "1.0.0",
   "description": "A demo package to illustrate how to publish an npm package step by step.",
   "main": "index.js",
