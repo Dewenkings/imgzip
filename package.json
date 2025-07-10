@@ -11,6 +11,7 @@
     "imgzip": "node ./bin/entry.mjs"
   },
   "publishConfig": {
+    "registry": "https://registry.npmjs.org",
     "access": "public"
   },
   "author": "devin ding",
