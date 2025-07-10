@@ -6,7 +6,7 @@ import fs from 'fs';
 import path from 'path';
 
 program
-  .name('mycli')
+  .name('imgzip')
   .description('A simple CLI tool')
   .version('1.0.0');
 
