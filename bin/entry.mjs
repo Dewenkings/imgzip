@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { program } from "commander";
-import { findImages, filterLargeImages, compressImage, excludeImages } from '../lib/index.mjs';
+import { findImages, filterLargeImages, compressImage, excludeImages, parseSize } from '../lib/index.mjs';
 import fs from 'fs';
 import path from 'path';
 
@@ -15,13 +15,24 @@ program
   .option('-c, --compress <compress...>', 'Only process specified images (multiple allowed)')
   .option('-e, --exclude <exclude...>', 'Exclude images (multiple allowed)')
   .option('-q, --quality <quality>', 'Compression quality (1-100, default: 80)', parseInt, 80)
+  .option('-s, --size-limit <size>', 'Minimum image size to process (e.g., 2MB, 2048KB, default: 2MB)')
   .action(handleAction);
 
 async function handleAction(options) {
-  const { root, compress, exclude, quality } = options;
+  const { root, compress, exclude, quality, sizeLimit } = options;
   console.log("root, compress, exclude :", root, compress, exclude )
   let images = [];
   const searchDir = root || process.cwd();
+
+  // Parse size limit
+  let sizeLimitBytes;
+  try {
+    sizeLimitBytes = parseSize(sizeLimit);
+    console.log(`Size limit: ${sizeLimitBytes / (1024 * 1024)} MB`);
+  } catch (error) {
+    console.error(error.message);
+    return;
+  }
 
   if (compress && compress.length > 0) {
     // Recursively find all images under searchDir
@@ -51,8 +62,8 @@ async function handleAction(options) {
   } else {
     // Traverse root or current directory
     images = await findImages(searchDir);
-    // Only keep images larger than 2MB
-    images = await filterLargeImages(images, 2 * 1024 * 1024);
+    // Only keep images larger than the specified size limit
+    images = await filterLargeImages(images, sizeLimitBytes);
   }
 
   // Exclude images
